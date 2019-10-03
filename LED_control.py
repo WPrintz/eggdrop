@@ -10,7 +10,7 @@ GPIO.setmode(GPIO.BCM)
 # set up GPIO output channel
 GPIO.setup(16, GPIO.OUT)
 
-for _ in range(10):
+for _ in range(25):
     # On
     GPIO.output(16, GPIO.LOW)
     # Off
