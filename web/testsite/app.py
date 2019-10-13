@@ -1,3 +1,5 @@
+# https://github.com/CoreyMSchafer/code_snippets/tree/master/Python/Flask_Blog/03-Forms-and-Validation
+
 from flask import Flask, render_template, url_for, flash, redirect
 from forms import EntryForm
 
