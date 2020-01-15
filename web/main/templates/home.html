@@ -2,8 +2,7 @@
 {% block info %}
 <!-- This section will contain a form -->
   <div class="pink">
-    <h1>A Python product</h1>
-    <p>This website was built with Python via the Flask framework.</p>
+    Forms entry will go here
   </div>
 {% endblock %}
 
@@ -16,6 +15,6 @@
 
 {% block button %}
   <div class="green">
-    A button will go here
+    <a href="{{ url_for('go') }}" class=go_button type="button">Click Me!</a>
   </div>
 {% endblock %}

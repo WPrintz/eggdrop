@@ -1,7 +1,20 @@
 {% extends "layout.html" %}
-{% block foot %}
-   <div class="home">
-     <h1>Stuff Yo</h1>
-     <p>This is a portfolio site about anything that can be put in a portfolio.</p>
-   </div>
+{% block info %}
+<!-- This section will contain a form -->
+  <div class="pink">
+    Forms data presented here
+  </div>
+{% endblock %}
+
+{% block results %}
+<!-- We don't have any results yet -->
+<div class="blue">
+  Waiting for data...
+</div>
+{% endblock %}
+
+{% block button %}
+  <div class="green">
+    <a href="{{ url_for('go') }}" class=go_button type="button">Click Me!</a>
+  </div>
 {% endblock %}
