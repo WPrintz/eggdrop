@@ -1,26 +1,22 @@
 # Reference: https://pythonhow.com/building-a-website-with-python-flask/
 
 # from flask import Flask, render_template
-from flask import Flask, request, session, render_template, url_for, flash, redirect
-from forms import EntryForm
+from flask import Flask, request, render_template, url_for, redirect, make_response
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '4d612c2badbe0325280051d8ee4dc6'
 
-# @app.route('/')
-# def home():
-#     return render_template('home.html')
-
-@app.route("/", methods=['GET', 'POST'])
+@app.route("/")
 def home():
-    form = EntryForm()
-    if request.method == 'POST':
-        if form.validate_on_submit():
-            form_data = {"input": form}
-            session[data] = form_data
-            return redirect(url_for('go'))
-    elif request.method == 'GET':
-        return render_template('home.html', form=form)
+    return render_template('home.html')
+
+@app.route('/setcookie/', methods = ['POST', 'GET'])
+def setcookie():
+   if request.method == 'POST':
+       experiment = request.form['nm']
+       #TODO: Add date to experiment name
+   resp = make_response(render_template('go.html'))
+   resp.set_cookie('name', experiment)
+   return resp
 
 @app.route('/reset/')
 def reset():
@@ -29,7 +25,14 @@ def reset():
 
 @app.route('/go/')
 def go():
-    return render_template('go.html')
+    name = request.cookies.get('name')
+    return render_template('go.html', name=name)
+
+@app.route('/start/')
+def start():
+    name = request.cookies.get('name')
+    #TODO: Kickoff measurement
+    return render_template('start.html', name=name)
 
 @app.route('/results/')
 def results():

@@ -14,18 +14,18 @@
 {% block results %}
 <!-- We don't have any results yet -->
 <div class="blue">
-  Waiting for data...
+  Experiment Started...
 </div>
 {% endblock results %}
 
 {% block button %}
   {% if name %}
   <div class="green">
-    <a href="{{ url_for('go') }}" class=go_button type="button">Check Ready</a>
+    <a href="{{ url_for('results') }}" class=go_button type="button">See Results</a>
   </div>
   {% else %}
   <div class="green">
-    <a href="{{ url_for('start') }}" class=go_button type="button">Start!</a>
+    <a href="{{ url_for('home') }}" class=go_button type="button">reset</a>
   </div>
   {% endif %}
 {% endblock button %}
