@@ -1,9 +1,10 @@
 {% extends "layout.html" %}
 {% block info %}
 <!-- This section will contain a form -->
-  <div class="pink">
-    Forms data presented here
-  </div>
+  <!-- <div class="pink">
+    Forms data presented here:
+    {{ form.text.data }}
+  </div> -->
 {% endblock %}
 
 {% block results %}
@@ -11,10 +12,10 @@
 <div class="blue">
   Waiting for data...
 </div>
-{% endblock %}
+{% endblock results %}
 
 {% block button %}
   <div class="green">
     <a href="{{ url_for('go') }}" class=go_button type="button">Click Me!</a>
   </div>
-{% endblock %}
+{% endblock button %}
