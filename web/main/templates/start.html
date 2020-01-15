@@ -2,20 +2,25 @@
 {% block info %}
   {% if name %}
   <div class="pink">
-    Experiment Ready: {{ name }}
+    Experiment: {{ name }}
   </div>
   {% else %}
   <div class="pink">
-    <a href="/go/">Preparing Experiment...</a>
+    Preparing Experiment...
   </div>
   {% endif %}
 {% endblock info %}
 
 {% block results %}
-<!-- We don't have any results yet -->
-<div class="blue">
-  Experiment Started...
-</div>
+  {% if name %}
+    <div class="blue">
+      Experiment Started... Please wait 5 seconds.
+    </div>
+  {% else %}
+    <div class="blue">
+      Not Started...
+    </div>
+  {% endif %}
 {% endblock results %}
 
 {% block button %}

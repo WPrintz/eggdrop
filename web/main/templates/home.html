@@ -3,7 +3,7 @@
 {% block info %}
   <div class="pink">
     <form action = "/setcookie/" method = "POST">
-       <p><h3>Enter Experiment Name</h3></p>
+       <label>Enter Experiment Name</label>
        <p><input type = 'text' name = 'nm'/></p>
        <p><input type = 'submit' value = 'Submit'/></p>
     </form>
@@ -12,9 +12,9 @@
 
 {% block results %}
 <!-- We don't have any results yet -->
-<div class="blue">
+<!-- <div class="blue">
   Waiting for data...
-</div>
+</div> -->
 {% endblock results %}
 
 {% block button %}
