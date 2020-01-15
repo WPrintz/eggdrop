@@ -7,25 +7,26 @@
   <body>
     <header>
       <div class="container">
-        <h1 class="logo">Ardit's web app</h1>
-        <strong><nav>
+        <h1 class="logo">Eli's Pi App</h1>
+        <!-- <strong><nav>
           <ul class="menu">
             <li><a href="{{ url_for('home') }}">Home</a></li>
-            <li><a href="{{ url_for('about') }}">About</a></li>
-            <li><a href="{{ url_for('stuff') }}">Stuff</a></li>
           </ul>
-        </nav></strong>
+        </nav></strong> -->
       </div>
     </header>
     <div class="container">
-      {% block head %}
+      {% block info %}
       {% endblock %}
     </div>
-    <br>
-    Something goes here
-    <br>
+<br>
     <div class="container">
-      {% block foot %}
+      {% block results %}
+      {% endblock %}
+    </div>
+<br>
+    <div class="container">
+      {% block button %}
       {% endblock %}
     </div>
   </body>

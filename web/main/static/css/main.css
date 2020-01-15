@@ -2,13 +2,13 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #444;
+  color: #000000;
 }
 /*
  * Formatting the header area
  */
 header {
-  background-color: #DFB887;
+  background-color: #4a4aff;
   height: 35px;
   width: 100%;
   opacity: .9;
@@ -32,21 +32,21 @@ header h1.logo:hover {
   width: 700px;
   margin: 0 auto;
 }
-div.home {
+div.pink {
   padding: 10px 0 30px 0;
   background-color: #FAA592;
   -webkit-border-radius: 6px;
      -moz-border-radius: 6px;
           border-radius: 6px;
 }
-div.about {
+div.blue {
   padding: 10px 0 30px 0;
   background-color: #E6E6FA;
   -webkit-border-radius: 6px;
      -moz-border-radius: 6px;
           border-radius: 6px;
 }
-div.stuff {
+div.green {
   padding: 10px 0 30px 0;
   background-color: #A3FEA7;
   -webkit-border-radius: 6px;

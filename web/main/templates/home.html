@@ -1,7 +1,21 @@
 {% extends "layout.html" %}
-{% block head %}
-  <div class="home">
+{% block info %}
+<!-- This section will contain a form -->
+  <div class="pink">
     <h1>A Python product</h1>
     <p>This website was built with Python via the Flask framework.</p>
+  </div>
+{% endblock %}
+
+{% block results %}
+<!-- We don't have any results yet -->
+<div class="blue">
+  Waiting for data...
+</div>
+{% endblock %}
+
+{% block button %}
+  <div class="green">
+    A button will go here
   </div>
 {% endblock %}
