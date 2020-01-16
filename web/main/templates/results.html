@@ -1,7 +1,39 @@
 {% extends "layout.html" %}
-{% block head %}
- <div class="home">
-   <h1>About me</h1>
-   <p>This is a portfolio site about anything that can be put in a portfolio.</p>
- </div>
- {% endblock %}
+{% block info %}
+  {% if name %}
+  <div class="pink">
+    Experiment: {{ name }}
+  </div>
+  {% else %}
+  <div class="pink">
+    Preparing Experiment...
+  </div>
+  {% endif %}
+{% endblock info %}
+
+{% block results %}
+  {% if name %}
+    <div class="blue">
+      Experiment Started... Please wait 5 seconds.
+    </div>
+  {% else %}
+    <div class="blue">
+      Not Started...
+    </div>
+  {% endif %}
+{% endblock results %}
+
+
+{% block button %}
+  {% if name %}
+  <div class="green">
+    <a href="{{ url_for('results') }}" class=button type="button">See Results</a>
+    <br><br><br><br><br><br><br>
+    <a href="{{ url_for('home') }}" class=reset_button type="button">Reset</a>
+  </div>
+  {% else %}
+  <div class="green">
+    <a href="{{ url_for('home') }}" class=reset_button type="button">Reset</a>
+  </div>
+  {% endif %}
+{% endblock button %}

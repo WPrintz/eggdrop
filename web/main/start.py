@@ -39,7 +39,9 @@ def start():
 
 @app.route('/results/')
 def results():
-    return render_template('results.html')
+    name = request.cookies.get('name')
+
+    return render_template('results.html', name=name)
 
 
 
