@@ -23,14 +23,17 @@
   {% endif %}
 {% endblock results %}
 
+
 {% block button %}
   {% if name %}
   <div class="green">
-    <a href="{{ url_for('results') }}" class=go_button type="button">See Results</a>
+    <a href="{{ url_for('results') }}" class=button type="button">See Results</a>
+    <br><br><br><br><br><br><br>
+    <a href="{{ url_for('home') }}" class=reset_button type="button">Reset</a>
   </div>
   {% else %}
   <div class="green">
-    <a href="{{ url_for('home') }}" class=go_button type="button">reset</a>
+    <a href="{{ url_for('home') }}" class=reset_button type="button">Reset</a>
   </div>
   {% endif %}
 {% endblock button %}

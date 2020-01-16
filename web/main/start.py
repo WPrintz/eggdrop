@@ -1,7 +1,9 @@
 # Reference: https://pythonhow.com/building-a-website-with-python-flask/
 
 # from flask import Flask, render_template
-from flask import Flask, request, render_template, url_for, redirect, make_response
+from flask import Flask, request, render_template, url_for, make_response
+import string
+from time import strftime, localtime
 
 app = Flask(__name__)
 
@@ -13,9 +15,10 @@ def home():
 def setcookie():
    if request.method == 'POST':
        experiment = request.form['nm']
-       #TODO: Add date to experiment name
+       s = experiment.translate(str.maketrans(',.!', 3*' ')).replace(' ', '_')
+       ctime = strftime("%Y_%m_%d_%H_%M_%S", localtime())
    resp = make_response(render_template('go.html'))
-   resp.set_cookie('name', experiment)
+   resp.set_cookie('name', s+'_'+ctime)
    return resp
 
 @app.route('/reset/')
@@ -37,6 +40,7 @@ def start():
 @app.route('/results/')
 def results():
     return render_template('results.html')
+
 
 
 if __name__ == '__main__':

@@ -25,7 +25,9 @@
   </div>
   {% else %}
   <div class="green">
-    <a href="{{ url_for('start') }}" class=go_button type="button">Start!</a>
+    <a href="{{ url_for('start') }}" class=button type="button">Start!</a>
+    <br><br><br><br><br><br><br>
+    <a href="{{ url_for('home') }}" class=reset_button type="button">Reset</a>
   </div>
   {% endif %}
 {% endblock button %}
