@@ -13,8 +13,14 @@
 
 {% block results %}
   {% if name %}
+  <style>
+    img{
+        max-width: 100%;
+        display: block; /* remove extra space below image */
+    }
+  </style>
     <div class="blue">
-      Experiment Started... Please wait 5 seconds.
+      <img class="img" src=/static/data/{{ name }}.png>
     </div>
   {% else %}
     <div class="blue">
@@ -25,15 +31,7 @@
 
 
 {% block button %}
-  {% if name %}
-  <div class="green">
-    <a href="{{ url_for('results') }}" class=button type="button">See Results</a>
-    <br><br><br><br><br><br><br>
-    <a href="{{ url_for('home') }}" class=reset_button type="button">Reset</a>
-  </div>
-  {% else %}
   <div class="green">
     <a href="{{ url_for('home') }}" class=reset_button type="button">Reset</a>
   </div>
-  {% endif %}
 {% endblock button %}

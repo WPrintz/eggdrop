@@ -39,8 +39,8 @@ def start():
 
 @app.route('/results/')
 def results():
-    name = request.cookies.get('name')
-
+    # name = request.cookies.get('name')
+    name = 'output-2019_10_03-01_11_31'
     return render_template('results.html', name=name)
 
 
@@ -48,5 +48,5 @@ def results():
 if __name__ == '__main__':
     app.jinja_env.auto_reload = True
     app.config['TEMPLATES_AUTO_RELOAD'] = True
-    app.run(debug=True)
-    # app.run(debug=True, host='0.0.0.0')
+    # app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')
