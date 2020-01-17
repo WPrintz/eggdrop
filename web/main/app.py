@@ -4,6 +4,10 @@
 from flask import Flask, request, render_template, url_for, make_response
 import string
 from time import strftime, localtime
+from mylittleapp import collectdata, saveimage
+# import numpy as np
+# import matplotlib
+# matplotlib.use('agg')
 
 app = Flask(__name__)
 
@@ -16,7 +20,7 @@ def setcookie():
    if request.method == 'POST':
        experiment = request.form['nm']
        s = experiment.translate(str.maketrans(',.!', 3*' ')).replace(' ', '_')
-       ctime = strftime("%Y_%m_%d_%H_%M_%S", localtime())
+       ctime = strftime("%Y_%m_%d-%H_%M_%S", localtime())
    resp = make_response(render_template('go.html'))
    resp.set_cookie('name', s+'_'+ctime)
    return resp
@@ -34,13 +38,13 @@ def go():
 @app.route('/start/')
 def start():
     name = request.cookies.get('name')
-    #TODO: Kickoff measurement
+    collectdata(name)
+    saveimage(name)
     return render_template('start.html', name=name)
 
 @app.route('/results/')
 def results():
-    # name = request.cookies.get('name')
-    name = 'output-2019_10_03-01_11_31'
+    name = request.cookies.get('name')
     return render_template('results.html', name=name)
 
 
