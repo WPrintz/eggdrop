@@ -4,10 +4,7 @@
 from flask import Flask, request, render_template, url_for, make_response
 import string
 from time import strftime, localtime
-from mylittleapp import collectdata, saveimage
-# import numpy as np
-# import matplotlib
-# matplotlib.use('agg')
+from fake_pi import collectdata, saveimage
 
 app = Flask(__name__)
 
@@ -18,17 +15,18 @@ def home():
 @app.route('/setcookie/', methods = ['POST', 'GET'])
 def setcookie():
    if request.method == 'POST':
-       experiment = request.form['nm']
-       s = experiment.translate(str.maketrans(',.!', 3*' ')).replace(' ', '_')
+       name = request.form['nm']
+       s = name.translate(str.maketrans(',.!', 3*' ')).replace(' ', '_')
        ctime = strftime("%Y_%m_%d-%H_%M_%S", localtime())
    resp = make_response(render_template('go.html'))
-   resp.set_cookie('name', s+'_'+ctime)
+   resp.set_cookie('filename', ctime+'_'+s)
+   resp.set_cookie('name', name)
    return resp
 
-@app.route('/reset/')
-def reset():
-    #TODO: Figure out how to clear memory
-    return render_template('home.html')
+# @app.route('/reset/')
+# def reset():
+#     #TODO: Figure out how to clear memory
+#     return render_template('home.html')
 
 @app.route('/go/')
 def go():
@@ -38,14 +36,16 @@ def go():
 @app.route('/start/')
 def start():
     name = request.cookies.get('name')
-    collectdata(name)
-    saveimage(name)
-    return render_template('start.html', name=name)
+    filename = request.cookies.get('filename')
+    collectdata(filename)
+    saveimage(name, filename)
+    return render_template('start.html', name=name, filename=filename)
 
 @app.route('/results/')
 def results():
     name = request.cookies.get('name')
-    return render_template('results.html', name=name)
+    filename = request.cookies.get('filename')
+    return render_template('results.html', name=name, filename=filename)
 
 
 
