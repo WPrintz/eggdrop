@@ -1,6 +1,8 @@
 # Reference: https://pythonhow.com/building-a-website-with-python-flask/
 
 # from flask import Flask, render_template
+import matplotlib as mpl
+mpl.use('Agg')
 from flask import Flask, request, render_template, url_for, make_response
 import string
 from time import strftime, localtime

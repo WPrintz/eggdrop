@@ -5,6 +5,8 @@ import time
 from mpu6050 import mpu6050
 import numpy as np
 import matplotlib.pyplot as plt
+# import matplotlib
+# matplotlib.use('Agg')
 
 
 mpu = mpu6050(0x68)
@@ -29,10 +31,9 @@ def collectdata(filename):
     for i in range(datapoints):
         d = mpu.get_accel_data()
         a[i] = [time.time(), d['x'], d['y'], d['z']]
-    np.savetxt('./static/data/{}.txt.gz'.format(filename), z, delimiter=',')
+    np.savetxt('./static/data/{}.txt.gz'.format(filename), a, delimiter=',')
 
 def saveimage(name, filename):
-#     plt.switch_backend('Agg')
     #TODO: Uncomment matplotlib backend when running in Flask
 
     #Load data
@@ -45,10 +46,15 @@ def saveimage(name, filename):
     scale = 1000
     begin = max_g_ind-int((scale/2))
     end = max_g_ind+int((scale/2))
+    if begin < 0:
+        begin = 0
+    if end > len(data):
+        end = len(data)
 
 
     #Setup plot
     fig = plt.figure(figsize=(12,6))
+    
     plt.plot(a[begin:end,0]-a[max_g_ind,0], np.zeros(end-begin)+1, '-k', alpha=0.15)
     plt.plot([0,0], [0,data[max_g_ind]*1.1], '-k', alpha=0.15)
     plt.plot(a[begin:end,0]-a[max_g_ind,0], data[begin:end], '-b')
@@ -62,8 +68,8 @@ def saveimage(name, filename):
     plt.ylim([0, data[max_g_ind]*1.05])
     plt.xlim(a[begin,0]-a[max_g_ind,0], a[end,0]-a[max_g_ind,0])
     # plt.legend([],[],['Acceleration (g)'])
-    plt.savefig('./static/data/{}.png'.format('test'), dpi=150, bbox_inches='tight')
-    plt.show()
+    plt.savefig('./static/data/{}.png'.format(filename), dpi=150, bbox_inches='tight')
+#     plt.show()
 
 
 if __name__ == '__main__':
