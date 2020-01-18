@@ -4,7 +4,7 @@
 from flask import Flask, request, render_template, url_for, make_response
 import string
 from time import strftime, localtime
-from fake_pi import collectdata, saveimage
+from raspberry import collectdata, saveimage
 
 app = Flask(__name__)
 
@@ -22,11 +22,6 @@ def setcookie():
    resp.set_cookie('filename', ctime+'_'+s)
    resp.set_cookie('name', name)
    return resp
-
-# @app.route('/reset/')
-# def reset():
-#     #TODO: Figure out how to clear memory
-#     return render_template('home.html')
 
 @app.route('/go/')
 def go():
