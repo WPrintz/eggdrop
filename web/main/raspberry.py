@@ -8,9 +8,22 @@ import matplotlib.pyplot as plt
 # import matplotlib
 # matplotlib.use('Agg')
 
+'''
+MPU6050 Accelerometer has different acceleration scales, which can be set with the set_accel_range method as so:
+
+Setting  Scale
+-------  -----
+0        2
+8        4
+16       8
+24       16
+'''
 
 mpu = mpu6050(0x68)
-mpu.read_accel_range()
+accel = 24
+print('Setting accel value : {}'.format(accel))
+mpu.set_accel_range(accel)
+print('Confirm accel scale : {}g'.format(mpu.read_accel_range()))
 
 SMALL_SIZE = 18
 MEDIUM_SIZE = 22
@@ -25,7 +38,7 @@ plt.rc('legend', fontsize=SMALL_SIZE)    # legend fontsize
 plt.rc('figure', titlesize=BIGGER_SIZE)  # fontsize of the figure title
 
 def collectdata(filename):
-    datapoints = 10000
+    datapoints = 5000
     #TODO: Check if 10,000 data points is the right number?
     a = np.zeros((datapoints, 4))
     for i in range(datapoints):
@@ -34,7 +47,6 @@ def collectdata(filename):
     np.savetxt('./static/data/{}.txt.gz'.format(filename), a, delimiter=',')
 
 def saveimage(name, filename):
-    #TODO: Uncomment matplotlib backend when running in Flask
 
     #Load data
     a = np.loadtxt('./static/data/{}.txt.gz'.format(filename), delimiter=',')
@@ -48,8 +60,8 @@ def saveimage(name, filename):
     end = max_g_ind+int((scale/2))
     if begin < 0:
         begin = 0
-    if end > len(data):
-        end = len(data)
+    if end >= len(data):
+        end = len(data)-1
 
 
     #Setup plot
@@ -62,6 +74,7 @@ def saveimage(name, filename):
 
 
     #Add labels and legends and such
+    plt.text(0.15, data[max_g_ind]*0.9, 'Max g: {:.2f}'.format(data[max_g_ind]), fontsize=20, color='g')
     plt.title('Experiment: ' + name)
     plt.xlabel('Time (s)')
     plt.ylabel('Acceleration (g)')

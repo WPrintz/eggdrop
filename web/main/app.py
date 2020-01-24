@@ -5,7 +5,8 @@ import matplotlib as mpl
 mpl.use('Agg')
 from flask import Flask, request, render_template, url_for, make_response
 import string
-from time import strftime, localtime
+import time
+# from time import strftime, localtime, time
 from raspberry import collectdata, saveimage
 
 app = Flask(__name__)
@@ -19,7 +20,7 @@ def setcookie():
    if request.method == 'POST':
        name = request.form['nm']
        s = name.translate(str.maketrans(',.!', 3*' ')).replace(' ', '_')
-       ctime = strftime("%Y_%m_%d-%H_%M_%S", localtime())
+       ctime = time.strftime("%Y_%m_%d-%H_%M_%S", time.localtime())
    resp = make_response(render_template('go.html'))
    resp.set_cookie('filename', ctime+'_'+s)
    resp.set_cookie('name', name)
@@ -34,8 +35,10 @@ def go():
 def start():
     name = request.cookies.get('name')
     filename = request.cookies.get('filename')
+    now = time.time()
     collectdata(filename)
     saveimage(name, filename)
+    print('Elapsed time: {}'.format(time.time()-now))
     return render_template('start.html', name=name, filename=filename)
 
 @app.route('/results/')
