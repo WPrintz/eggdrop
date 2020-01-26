@@ -5,8 +5,6 @@ import time
 from mpu6050 import mpu6050
 import numpy as np
 import matplotlib.pyplot as plt
-# import matplotlib
-# matplotlib.use('Agg')
 
 '''
 MPU6050 Accelerometer has different acceleration scales, which can be set with the set_accel_range method as so:
